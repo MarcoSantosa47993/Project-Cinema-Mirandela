@@ -1,0 +1,48 @@
+{
+  "proxy": "http://localhost:5000",
+  "name": "projetofinal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd servidor && npm install  && cd ../cliente && npm install && npm run build",
+    "start": "node servidor/servidor.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "bwip-js": "^4.1.1",
+    "canvas": "^2.11.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "font-awesome": "^4.7.0",
+    "jsbarcode": "^3.11.5",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.2",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.2",
+    "node-fetch": "^2.6.11",
+    "nodemailer": "^6.9.3",
+    "nodemon": "^2.0.22",
+    "pdfkit": "^0.13.0",
+    "qrcode": "^1.5.3",
+    "react-icons": "^4.11.0",
+    "react-image-magnify": "^2.7.4",
+    "react-qr-code": "^2.0.11",
+    "react-spring": "^9.7.2",
+    "request": "^2.88.2",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
+    "stripe": "^12.9.0",
+    "uuid": "^9.0.0",
+    "vite": "^4.3.9",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}

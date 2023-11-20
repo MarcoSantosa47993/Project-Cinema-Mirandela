@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+
+
+
+    .nome{
+        margin-left: 6px;
+    }
+
+    .ri-shield-user-line{
+        font-size: 25px;
+        margin-top: 6px;
+    }
+
+    .ri-logout-circle-r-line{
+        font-size: 25px;
+        margin-top: 6px;
+       margin-left: 0;
+    }
+
+    .login{
+        margin-top: 7px;
+    }
+}

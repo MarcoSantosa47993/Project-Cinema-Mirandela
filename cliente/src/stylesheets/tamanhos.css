@@ -1,0 +1,53 @@
+.h-screen{
+    height: 100vh
+}
+
+.w-screen{
+    width: 100vw;
+}
+
+.w-full{
+    width:100%;
+}
+
+.w-screen2{
+    width: 352px;
+}
+
+
+/*Tamanho do texto*/
+
+.text-sm{
+    font-size: 14px;
+}
+
+.text-md{
+    font-size: 16px;
+}
+
+.text-lg{
+    font-size: 18px;
+}
+
+.text-xl{
+    font-size: 20px;
+}
+
+.text-2xl{
+    font-size: 24px;
+}
+
+.text-3xl{
+    font-size: 30px;
+}
+.text-4xl{
+    font-size: 40px;
+}
+
+.br-1{
+    border-radius: 4px;
+}
+
+.customTable .ant-table-cell {
+    font-size: 18px; /* Ajuste para o tamanho desejado */
+}

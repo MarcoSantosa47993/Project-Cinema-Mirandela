@@ -1,0 +1,32 @@
+.container2 {
+    position: relative; /* Garante que os elementos filhos usem o posicionamento relativo a este container */
+    background-color: #F9F9F9; /* Cor de fundo do elemento (pode ser transparente) */
+    display: flex; /* Torna o container um flex container */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo do flex container */
+    align-items: center; /* Centraliza verticalmente o conteúdo do flex container */
+    margin-top: 10px;
+ 
+  }
+  
+  .imagem {
+
+     justify-content: center;
+     display: flex;
+     align-items: center;
+     
+     
+  }
+
+  .imagem.tamanho{
+    width:'1000px';
+     height:'800px';
+  }
+
+ 
+  
+  .elemento-sobreposto {
+    position: absolute; /* Permite que o elemento seja posicionado de forma absoluta em relação ao container pai */
+    background-color: transparent; /* Cor de fundo do elemento (pode ser transparente) */
+    padding: 10px; /* Espaçamento interno para melhorar a legibilidade do texto */
+    margin-bottom: 120px;
+  }

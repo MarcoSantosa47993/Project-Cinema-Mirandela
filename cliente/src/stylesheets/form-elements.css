@@ -1,0 +1,116 @@
+input ,textarea,select{
+    height:40px;
+    padding-left: 15px;
+    border:1px solid grey;
+    width: 100%;
+}
+
+input:focus,textarea:focus,select:focus{
+    outline: none;
+    border:1px solid #373737;
+}
+
+
+textarea{
+    min-height:100px ;
+    padding: 15px;
+}
+
+.ant-form-item{
+    margin-bottom: 10px;
+}
+
+.container .titulot{
+    margin: 1rem 0;
+    margin-left: 60px;
+    
+}
+
+.container .ri-star-line{
+font-size: 30px;
+   color: orange;
+}
+
+.container .ri-movie-line{
+    font-size: 30px;
+       color: red;
+       margin-left: 10px;
+       
+       
+    }
+
+
+.container .movie {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+
+
+.container img{
+  
+    width: 500px;
+    height: 600px;
+    border-radius: 1rem;
+   
+}
+
+.container .details{
+      display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 4rem ;
+    max-width: 60%;
+}
+
+
+.container .atributos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 4rem ;
+ 
+}
+
+
+
+
+
+.container button {
+    background-color: #6654da;
+    border: none;
+    cursor:pointer;
+    color:white !important;
+    height: 50px;
+    border-radius: 1rem;
+    padding: 0.8rem 2rem;
+    margin-top: 50px;
+    font-size: 100%;
+    transition: all 0.3s;
+    margin-left: 50px;
+
+
+}
+
+.container button:hover {
+    background-color: #5848c2;
+}
+
+
+
+a:visited{
+    text-decoration: none;
+    color:black
+}
+
+a:link{
+    text-decoration: none;
+}
+
+
+
+
+

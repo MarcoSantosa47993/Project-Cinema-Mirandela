@@ -1,0 +1,161 @@
+.imagem{
+    width: 1000px;
+    height: 750px;
+    
+}
+
+.retangulo {
+    width: 300px;
+    height: 200px;
+    background-color: blue;
+    border-radius: 50px;
+}
+
+.retangulo1 {
+    width: 150px;
+    height: 200px;
+}
+.gridgap{
+   grid-gap: 20px;
+}
+
+.esquerda{
+    margin-top: 250px;
+}
+
+.direita{
+    margin-top: 250px;
+}
+
+.topomeio{
+    grid-gap: 10px;
+    display: 'flex';
+     flex-direction: column;
+     margin-bottom: 50px;
+}
+.myModalStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;  /* Ajustando a largura para 600 pixels */
+}
+.seat-list-container {
+    align-items: center;
+    flex-direction: column; /* Exibir em uma fila horizontal */
+    display: flex;
+  
+    
+    
+  }
+  
+  .seat-list-title {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 20px;
+    color: white; /* Define a cor do texto como branco */
+
+  }
+  
+  .seat-list-letter {
+    margin-right: 10px;
+    font-size: 20px; /* Define o tamanho da letra "Q" */
+    margin-top: 5px;
+
+  }
+  
+  .seat-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    flex-wrap: wrap; /* Permite que os elementos quebrem para a próxima linha */
+  }
+  
+  .seat {
+    display: flex;
+    /* Estilos dos assentos aqui */
+    color: white; /* Define a cor do texto como branco */
+
+ 
+  }
+  
+  
+
+
+.modal{
+    align-items : 'center';
+    justify-content : 'center';
+    display: 'flex';
+}
+
+@media (max-width: 768px) {
+
+    .imagem{
+        width: 420px;
+        height: 570px;
+        
+    }
+  
+    .retangulo {
+        width: 170px;
+        height: 150px;
+    }
+
+    .retangulo1 {
+        width: 67px;
+        height: 100px;
+       
+
+        
+    }
+
+    .gridgap{
+        grid-gap: 10px;
+     }
+     
+
+
+    .myModalStyle {
+        display: "";
+        justify-content: "";
+        align-items: "";
+        width: 200;
+      }
+
+    .esquerda{
+         margin-top: 205px;
+    }
+
+    
+    .direita{
+        margin-top: 205px;
+   }
+
+
+
+    .topomeio{
+        grid-gap: 10px;
+        display: 'flex';
+         flex-direction: column;
+         margin-bottom: 26px;
+    }
+
+     
+    .seat {
+        height: 30px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+       
+        
+       
+    }
+}
+
+/* Media query para desktops */
+@media (min-width: 1024px) {
+   
+}

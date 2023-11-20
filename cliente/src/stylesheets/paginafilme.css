@@ -1,0 +1,78 @@
+.container {
+    padding: 20px;
+}
+
+.movie {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.details {
+    padding: 20px;
+}
+
+/* On smaller screens */
+@media (max-width: 768px) {
+    .movie {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    
+    .container .movie {
+        margin-top: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      
+    }
+
+    .container .titulot{
+        margin: 1rem 0;
+        margin-left: 0;
+        
+    }
+    
+    
+
+    .titulot {
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        flex-wrap: wrap; /* This ensures content wraps if there's not enough space */
+    
+    }
+
+    
+
+    
+    
+    /* Assuming the icons might have margin or padding, reset or adjust them */
+    .titulot i {
+        margin: 0 10px; /* You can adjust this value as needed */
+    }
+
+    .movie img {
+        width: 100%; /* This will scale the image to 90% of its container on smaller screens */
+        height: 100%;
+        margin: 0 auto; /* Centers the image if it's not taking full width */
+    }
+
+   
+.container button {
+    background-color: #6654da;
+    border: none;
+    cursor:pointer;
+    color:white !important;
+    height: 50px;
+    border-radius: 1rem;
+    padding: 0.8rem 2rem;
+    margin-top: 50px;
+    font-size: 100%;
+    transition: all 0.3s;
+    margin-left:0;
+
+
+}
+}

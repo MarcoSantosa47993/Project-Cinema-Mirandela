@@ -1,0 +1,36 @@
+:root{
+    --cor-principal: #A8B50A; 
+    --cor-secundaria: #473729; 
+}
+
+.bg-primary{
+    background-color: var(--cor-principal);
+}
+.bg-footer{
+    background-color: #819F01;
+}
+
+
+.bg-white{
+    background-color: white;
+}
+
+.text-black{
+    color: #000;
+}
+
+.text-white{
+    color:white;
+}
+.bg-secundary{
+    background-color: var(--cor-secundaria);
+}
+
+.bg-error{
+    background-color: red;
+}
+
+.bg-warning{
+    background-color: #a2840e;
+}
+
