@@ -402,7 +402,7 @@ router.post("/comprar-sessao-2", authMiddleware, async (req, res) => {
                 console.log("2")
                 const lugares = req.body.lugares;
                 console.log("Lugares -> " + lugares)
-                const pathToImage = path.join(__dirname, 'imagens', 'Mirandela-logo-tr.png');
+                const pathToImage = path.join(__dirname,'servidor', 'imagens', 'Mirandela-logo-tr.png');
                 // Criar um bilhete para cada lugar no array de lugares
                 const newCompras = await Promise.all(lugares.map(async (lugar) => {
                     // Buscar o bilhete correspondente
