@@ -26,8 +26,10 @@ function Lugaresbaixo({showMovieFormModal3,
       const [selectedPlaces, setSelectedPlaces] = useState([]);
 
       useEffect(() => {
+        const serverUrl = 'http://3.75.158.163:5000'; // substitua pelo seu IP ou domínio
+
         // Conectar-se ao servidor
-        socket = io('http://localhost:5000');
+        socket = io(serverUrl);
         socket.on('lugar-liberado', (data) => {
           console.log(`O lugar ${data.lugarId} foi liberado.`);
   
