@@ -26,7 +26,7 @@ function Lugaresbaixo({showMovieFormModal3,
       const [selectedPlaces, setSelectedPlaces] = useState([]);
 
       useEffect(() => {
-        const serverUrl = 'http://3.75.158.163:5000'; // substitua pelo seu IP ou domínio
+        const serverUrl = 'https://3.75.158.163:5000'; // substitua pelo seu IP ou domínio
 
         // Conectar-se ao servidor
         socket = io(serverUrl);
