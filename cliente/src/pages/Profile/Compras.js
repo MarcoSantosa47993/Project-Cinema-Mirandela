@@ -73,7 +73,7 @@ function Bilhetes() {
                                 Data & Hora: {moment(bilhete.sessao.data).format("DD-MM-YYYY")} - {bilhete.sessao.hora}
                             </h1>
                             <h1 className='text-sm'>
-                            Lugares: {bilhete.lugares.map(lugar => lugar.name).join(", ")}
+                            Lugares: {bilhete.lugares.map(lugar => lugar).join(", ")}
                             </h1>
                             <h1 className='text-sm'>Preço: € {(
                                 bilhete.sessao.precobilhete * bilhete.lugares.length
