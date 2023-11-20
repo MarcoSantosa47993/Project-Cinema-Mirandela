@@ -18,6 +18,7 @@ const JsBarcode = require('jsbarcode');
 const { createCanvas } = require('canvas');
 const multer = require('multer');
 const io = require('../socket');
+const path = require("path");
 
 
 const storage = multer.memoryStorage(); // Usaremos a storage em memória já que não precisamos salvar o arquivo no disco
