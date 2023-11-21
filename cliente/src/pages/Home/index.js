@@ -68,7 +68,7 @@ export default function Home() {
                   onClick={() => navigate(`/movie/paginafilme/${movie._id}`)}>
                   <img className="imghome" src={movie.poster} alt=""></img>
                   <div className='flex justify-center p-1'>
-                    <h1 className='textohome'>
+                    <h1 style={{textAlign:'center'}} className='textohome'>
                       {movie.titulo}
                     </h1>
                   </div>
