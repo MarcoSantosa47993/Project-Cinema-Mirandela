@@ -1055,7 +1055,7 @@ router.post("/eliminar-lugar-reserva", authMiddleware, async (req, res) => {
             });
         }
 
-        if (bilhete.estado !== "Reservado") {
+        if (bilhete.estado !== "Reservado" && bilhete.estado != "Cancelado") {
             console.log("Bilhete já foi comprado ou está em outro estado");
             return res.send({
                 success: false,
