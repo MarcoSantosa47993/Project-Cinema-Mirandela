@@ -43,9 +43,14 @@ function EstatisticasGerais() {
         console.log("Olá Sessões ->" + JSON.stringify(sessao))
     },[sessao])
     const bilhetesValidos = bilhetes.filter(bilhete => bilhete.estado !== "Cancelado");
-
-    const totalLugaresOcupados = bilhetesValidos.reduce((acc, bilhete) => acc + bilhete.lugares.length, 0);
-    const mediaLugaresOcupados = sessao.length ? totalLugaresOcupados / sessao.length : 0; // Evita divisão por zero
+    // Filtra apenas os bilhetes que estão em estado "Validado" para calcular a média de lugares ocupados
+    const bilhetesValidados = bilhetes.filter(bilhete => bilhete.estado === "Terminado");
+    console.log("Bilhetes_Validados: " + bilhetesValidados.length)
+    
+    
+        const totalLugaresOcupados = bilhetesValidados.reduce((acc, bilhete) => acc + bilhete.lugares.length, 0);
+    console.log("TotalLugaresOcupados: " + totalLugaresOcupados)
+        const mediaLugaresOcupados = bilhetesValidados.length ? totalLugaresOcupados / bilhetesValidados.length : 0; // Média calculada apenas com bilhetes "Validados"
   
     const filmesContagem = {};
      
