@@ -1045,9 +1045,11 @@ router.post("/eliminar-lugar-reserva", authMiddleware, async (req, res) => {
         const lugar = req.body.lugar;
         const sessaoId = req.body.sessao.sessao._id;
 
-        const bilhete = await Bilhete.findOne({ lugares: lugar, sessao: sessaoId });
-        
-        if (!bilhete) {
+        // Encontre todos os bilhetes para o lugar e sessão especificados
+        const bilhetes = await Bilhete.find({ lugares: lugar, sessao: sessaoId });
+
+        // Verifica se não existe nenhum bilhete
+        if (bilhetes.length === 0) {
             console.log("Bilhete não encontrado");
             return res.send({
                 success: false,
@@ -1055,15 +1057,20 @@ router.post("/eliminar-lugar-reserva", authMiddleware, async (req, res) => {
             });
         }
 
-        if (bilhete.estado !== "Reservado" && bilhete.estado != "Cancelado") {
-            console.log("Bilhete já foi comprado ou está em outro estado");
+        // Filtrar para encontrar um bilhete que está em estado "Reservado"
+        const bilheteReservado = bilhetes.find(bilhete => bilhete.estado === "Reservado");
+
+        // Se nenhum bilhete "Reservado" for encontrado, retorne uma mensagem
+        if (!bilheteReservado) {
+            console.log("Nenhum bilhete Reservado encontrado para o lugar especificado");
             return res.send({
                 success: false,
-                message: "Bilhete já foi comprado ou está em outro estado"
+                message: "Nenhum bilhete Reservado encontrado para o lugar especificado"
             });
         }
 
-        await Bilhete.deleteOne({ _id: bilhete._id });
+        // Eliminar o bilhete "Reservado" encontrado
+        await Bilhete.deleteOne({ _id: bilheteReservado._id });
         io.emit('lugar-liberado', { lugarId: lugar });
         res.send({
             success: true,
