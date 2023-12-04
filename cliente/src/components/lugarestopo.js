@@ -62,7 +62,7 @@ function Lugarestopo({showMovieFormModal2,
 
       useEffect(() => {
         // Conectar-se ao servidor
-        socket = io('http://localhost:5000');
+        socket = io('https://cinema-mirandela2.onrender.com');
         socket.on('lugar-liberado', (data) => {
           console.log(`O lugar ${data.lugarId} foi liberado.`);
           // Verifica se o ID do lugar é da fila I ou de lugares acessíveis na fila I

@@ -99,7 +99,7 @@ function Lugaresesquerda({showMovieFormModal,
 )
 useEffect(() => {
   // Conectar-se ao servidor
-  socket = io('http://localhost:5000');
+  socket = io('https://cinema-mirandela2.onrender.com');
 
   socket.on('lugar-liberado', (data) => {
     console.log(`O lugar ${data.lugarId} foi liberado.`);
