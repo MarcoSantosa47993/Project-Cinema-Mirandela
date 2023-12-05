@@ -18,10 +18,12 @@ import '../stylesheets/MeuComponente.css';
 import jsPDF from 'jspdf';
 import JsBarcode from 'jsbarcode';
 import "../stylesheets/lugares.css"
+import io from "socket.io-client"
 
 
 
 const Lugares = (dados) => {
+  let socket
   let tamanhoRetangulo = {
     width: '300px',
     height: '200px',
@@ -33,8 +35,19 @@ const Lugares = (dados) => {
   };
   
   
-  
-  
+  useEffect(() => {
+    // Conectar-se ao servidor
+    socket = io('https://cinema-mirandela2.onrender.com');
+    
+  window.addEventListener('beforeunload', () => {
+    socket.emit('cliente_desconectando', { userId :  user._id });
+ });
+
+
+    return () => {
+        socket.disconnect();
+    };
+}, []);
   
   
   

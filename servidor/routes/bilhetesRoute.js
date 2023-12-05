@@ -1363,4 +1363,38 @@ router.post("/get-all-bilhetes-func", authMiddleware, async (req, res) => {
         })
     }
   })
+
+  io.on('connection', (socket) => {
+    socket.on('cliente_desconectando', async (data) => {
+        const userId = data.userId;
+        console.log()
+        try {
+            // Buscar os bilhetes reservados para um usuário específico
+            const bilhetes = await Bilhete.find({ 
+                user: userId,
+                estado: 'Reservado'
+            });
+
+            // Obter os lugares de cada bilhete
+            const lugares = bilhetes.flatMap(bilhete => bilhete.lugares);
+            console.log("Lugares liberados: " + lugares)
+
+            // Deletar os bilhetes
+            await Bilhete.deleteMany({ 
+                user: userId,
+                estado: 'Reservado'
+            });
+
+            // Emitir um evento para cada lugar que foi liberado
+            lugares.forEach(lugar => {
+                io.emit('lugar-liberado', { lugarId: lugar });
+            });
+
+        } catch (error) {
+            console.error("Erro: " + error.message);
+        }
+    });
+});
+
+
 module.exports = router

@@ -110,7 +110,9 @@ function Lugaresbaixo({showMovieFormModal3,
         }
       });
 
-    
+      window.addEventListener('beforeunload', () => {
+        socket.emit('cliente_desconectando', { userId :  user._id });
+     });
         return () => {
             socket.disconnect();
         };

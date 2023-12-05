@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
-import { Button, message } from 'antd';
+import { Button, Modal, message } from 'antd';
 import { GetMoviebyId } from '../../apicalls/movies';
 import { useNavigate, useParams } from "react-router-dom"
 import moment from 'moment'
@@ -14,7 +14,35 @@ function PaginaFilme() {
     const [movie, setMovie] = React.useState([])
     const navigate = useNavigate()
     const params = useParams();
-   
+
+    
+    const [isModalVisible, setIsModalVisible] = React.useState(false);
+    const [trailerUrl, setTrailerUrl] = React.useState('');
+
+    const extractVideoId = (link) => {
+        // Regular expression to extract the video ID from various YouTube link formats
+        const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?|watch|.*[?&]v=|.*[?&]vi=))|youtu\.be\/)([^"&?/\s]{11})/;
+        const match = link.match(regex);
+        if (match && match[1]) {
+            return match[1];
+        }
+        return null;
+    };
+
+    const showModal = () => {
+        const videoId = extractVideoId(movie.trailer);
+        if (videoId) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+            setTrailerUrl(embedUrl);
+            setIsModalVisible(true);
+        } else {
+            console.log("nao deu")
+        }
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const getData = async () => {
         try {
@@ -49,24 +77,25 @@ function PaginaFilme() {
                 <div className='container'>
                  <div className='movie'>
                  <ReactImageMagnify
-                    {...{
-                        smallImage: {
-                            alt: movie.descricao,
-                            isFluidWidth: true,
-                            src: movie.poster,
-                            sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
-                        },
-                        largeImage: {
-                            src: movie.poster,
-                            width: 1000,
-                            height: 1600
-                        },
-                        enlargedImagePosition: "over"
-                    }}
-                />
+    {...{
+        smallImage: {
+            alt: movie.descricao,
+            isFluidWidth: false,
+            src: movie.poster,
+            width: 500, // largura desejada
+            height: 600, // altura desejada
+        },
+        largeImage: {
+            src: movie.poster,
+            width: 1000,
+            height: 1600
+        },
+        enlargedImagePosition: "over"
+    }}
+/>
          
                  <div className="details"> 
-                 <h1 className='titulot'>{movie.titulo} <i class="ri-star-line"> {parseFloat(avaliacao).toFixed(1)}/10</i> <a href={movie.trailer} target='_blank'><i class="ri-movie-line" ></i></a></h1>
+                 <h1 className='titulot'>{movie.titulo} <i class="ri-star-line"> {parseFloat(avaliacao).toFixed(1)}/10</i> <a  target='_blank' onClick={showModal}><i class="ri-movie-line"></i></a></h1>
                       <div className="atributos">  
                       <span> {movie.descricao}</span>
                       <span className='mt-1'>Realizador: {movie.realizador} </span>
@@ -86,6 +115,39 @@ function PaginaFilme() {
                      
                         </div>
                  </div>
+
+                 <Modal
+    visible={isModalVisible}
+    onCancel={handleCancel}
+    closable={false} // Disable the default close (X) button
+    footer={null}
+    width={1000} // Adjust the width as per your preference
+    bodyStyle={{ height: '500px', position: 'relative' }} // Set position to relative
+    title={null} // Remove the title
+>
+    <Button
+        className="custom-close-button"
+        onClick={handleCancel}
+        style={{
+            position: 'absolute',
+            top: '1px', // Adjust the top position as needed
+            right: '1px', // Adjust the right position as needed
+            zIndex: 9999, // Ensure it's above the iframe
+        }}
+    >
+       X
+    </Button>
+    <iframe
+        width="100%" // Adjust the width to fill the modal
+        height="100%" // Adjust the height to fill the modal
+        src={trailerUrl}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+    ></iframe>
+</Modal>
+  
+
 
                 </div>
     
