@@ -240,7 +240,7 @@ router.get('/recuperar-password', async (req, res) => {
 });
 
 router.get('/login' , (req,res) => {
-    res.redirect("http://localhost:3000/Login")
+    res.redirect("https://cinema-mirandela2.onrender.com/login")
 })
 
 
