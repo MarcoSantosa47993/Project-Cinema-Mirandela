@@ -143,7 +143,9 @@ function Lugarestopo({showMovieFormModal2,
         }
       });
       
-      
+      window.addEventListener('beforeunload', () => {
+        socket.emit('cliente_desconectando', { userId :  user._id });
+     });
         return () => {
             socket.disconnect();
         };

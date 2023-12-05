@@ -1,6 +1,6 @@
 .container2 {
     position: relative; /* Garante que os elementos filhos usem o posicionamento relativo a este container */
-    background-color: #F9F9F9; /* Cor de fundo do elemento (pode ser transparente) */
+    background-color: rgb(254,254,254); /* Cor de fundo do elemento (pode ser transparente) */
     display: flex; /* Torna o container um flex container */
     justify-content: center; /* Centraliza horizontalmente o conteúdo do flex container */
     align-items: center; /* Centraliza verticalmente o conteúdo do flex container */
