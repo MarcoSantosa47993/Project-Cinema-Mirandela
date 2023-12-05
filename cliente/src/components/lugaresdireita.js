@@ -365,7 +365,7 @@ function Lugaresdireita({showMovieFormModal4,
       );
   
    
-      selectedPlacesParent([])
+      setSelectedPlacesParent([])
         EliminarLugarReservasTime(place);
    
       }, 60000); // 60,000 ms = 1 minuto
@@ -425,7 +425,7 @@ function Lugaresdireita({showMovieFormModal4,
       setSelectedPlaces(prevSelectedPlaces =>
         prevSelectedPlaces.filter(selectedPlace => selectedPlace.id !== selectedAccessiblePlace.id)
       );
-      selectedPlacesParent([])
+      setSelectedPlacesParent([])
       // Chame a função para cancelar a reserva do lugar acessível após o tempo expirar
       EliminarLugarReservasTime(selectedAccessiblePlace);
   

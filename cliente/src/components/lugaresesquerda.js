@@ -414,7 +414,7 @@ const getBilhetes = async () => {
         prevSelectedPlaces.filter((selectedPlace) => selectedPlace.id !== place.id)
       );
   
-      selectedPlacesParent([])
+      setSelectedPlacesParent([])
       
         EliminarLugarReservasTime(place);
    
@@ -474,7 +474,7 @@ const getBilhetes = async () => {
       setSelectedPlaces(prevSelectedPlaces =>
         prevSelectedPlaces.filter(selectedPlace => selectedPlace.id !== selectedAccessiblePlace.id)
       );
-      selectedPlacesParent([])
+      setSelectedPlacesParent([])
       // Chame a função para cancelar a reserva do lugar acessível após o tempo expirar
       EliminarLugarReservasTime(selectedAccessiblePlace);
   
