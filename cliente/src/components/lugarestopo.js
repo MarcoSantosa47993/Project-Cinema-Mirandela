@@ -398,7 +398,7 @@ function Lugarestopo({showMovieFormModal2,
     );
 
  
-    
+    selectedPlacesParent([])
       EliminarLugarReservasTime(place);
  
     }, 60000); // 60,000 ms = 1 minuto
@@ -459,7 +459,7 @@ const onConfirmModal = () => {
     setSelectedPlaces(prevSelectedPlaces =>
       prevSelectedPlaces.filter(selectedPlace => selectedPlace.id !== selectedAccessiblePlace.id)
     );
-
+    selectedPlacesParent([])
     // Chame a função para cancelar a reserva do lugar acessível após o tempo expirar
     EliminarLugarReservasTime(selectedAccessiblePlace);
 

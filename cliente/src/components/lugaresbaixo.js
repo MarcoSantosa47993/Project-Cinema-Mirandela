@@ -368,7 +368,7 @@ function Lugaresbaixo({showMovieFormModal3,
     );
 
  
-    
+    selectedPlacesParent([])
       EliminarLugarReservasTime(place);
  
     }, 60000); // 60,000 ms = 1 minuto
