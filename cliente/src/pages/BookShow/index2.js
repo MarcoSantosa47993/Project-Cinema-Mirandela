@@ -110,7 +110,7 @@ function BookSessao2() {
               : sessao.sessao.filme.titulo}</h1>
           </div>
           <div>
-            <h1 className='text3'>{moment(sessao.data).format('DD/MM/yyyy')}
+            <h1 className='text3'>{moment(sessao.sessao.data).format('DD/MM/yyyy')}
            
             </h1>
 
