@@ -320,7 +320,7 @@ function Lugaresbaixo({showMovieFormModal3,
             bilhete.forEach(b => {
                 b.lugares.forEach(lugar => {
                     if (lugar === lugarAtual.id) {
-                        if (b.estado === "Comprado" || (b.estado === "Reservado" && b.user._id !== currentUser)) {
+                        if (b.estado === "Comprado" || b.estado==="Validado" || (b.estado === "Reservado" && b.user._id !== currentUser)) {
                             lugarAtual.isOccupied = true;
                         }
                     }
