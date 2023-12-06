@@ -28,7 +28,7 @@ function Qrcode({openQrcode,setopenQrCode,bilhete}) {
           
         </div>
         
-        <h3 className='mt-4 justify-center flex'>Nota: Apresente o qr code ao segurança </h3>
+        <h3 className='mt-4 justify-center flex'>Nota: Apresente o bar code ao segurança </h3>
         
         </Modal>
     </div>
