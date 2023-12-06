@@ -364,7 +364,7 @@ doc.font('Helvetica-Bold')
             const mailOptions = {
               from: `"Cinema Mirandela" <seuemail@example.com>`,
               to: user.email,
-              subject: `'Confirmação de Compra - Bilhete para Filme!  ${sessao.filme.titulo}}'`,
+              subject: `'Confirmação de Compra - Bilhete para Filme!  ${sessao.filme.titulo}'`,
               text: 'Veja os detalhes dos bilhetes anexados em PDF.',
               attachments: attachments
             };
