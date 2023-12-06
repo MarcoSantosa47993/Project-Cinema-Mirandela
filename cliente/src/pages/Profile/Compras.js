@@ -57,7 +57,7 @@ function Bilhetes() {
             <Row gutter={[16, 16]}>
             {bilhetes
                 .filter(bilhete => bilhete.estado === "Comprado" || bilhete.estado === "Validado")
-                .map((bilhete) => (<Col span={12} >
+                .map((bilhete) => (<Col span={24} md={12} >
 
                     <div className='card4 p-2 flex justify-between uppercase'>
                         

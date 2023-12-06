@@ -31,7 +31,8 @@ function SessaoModal({openSessaoModal,setOpenSessaoModal,cinema}) {
     const filteredTickets = bilhete.filter(
       ticket =>
         (ticket.estado === 'Comprado' || ticket.estado === 'Validado') &&
-        ticket.user.email.toLowerCase().includes(searchTerm.toLowerCase())
+        ticket.user.email.toLowerCase().includes(searchTerm.toLowerCase())||
+        ticket._id.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
 
