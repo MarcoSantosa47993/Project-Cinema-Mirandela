@@ -5,16 +5,20 @@ import { Modal, Table, message } from 'antd'
 import { ShowLoading, HideLoading } from '../../redux/loadersSlice'
 import { useDispatch } from 'react-redux';
 import { GetAllFunc } from '../../apicalls/users'
-import { GetAllSessoes} from '../../apicalls/cinemas'
+import { DeleteSessaoHist, GetAllSessoes} from '../../apicalls/cinemas'
 import moment from "moment"
+import { GCompradores } from '../../apicalls/bilhetes'
 
 function Historico() {
 
-    const [sessao = [], setSessao] = React.useState([]);
-    const [bilhetes = [], setBilhetes] = React.useState([]);
+    const [sessao , setSessao] = React.useState([]);
+    const [sessaoescolhida,Setsessaoescolhida] = React.useState(null)
+    const [bilhetes , setBilhetes] = React.useState([]);
+    const [bilhetes2 ,setBilhetes2] = React.useState([])
     const dispatch = useDispatch()
     const [searchTerm, setSearchTerm] = React.useState("");
     const [showModal, setShowModal] = React.useState(false);
+    const [isSessionsModalOpen, setSessionsModalOpen] = React.useState(false);
 
 
     const handleDeleteClick = () => {
@@ -27,14 +31,62 @@ function Historico() {
     };
   
 
-    const handleConfirmDelete = () => {
-      // Coloque aqui a lógica para remover a sessão do histórico
-      // ...
-    
-      // Feche o modal após a exclusão
+    const handleConfirmDelete = async () => {
+      try {
+         dispatch(ShowLoading())
+         const response = await DeleteSessaoHist({sessaoId:sessaoescolhida})
+         if(response.success)
+         {
+           message.success(response.message)
+         }else{
+          message.error(response.message)
+         }
+         dispatch(HideLoading())
+      } catch (error) {
+        message.error(error.message)
+        dispatch(HideLoading())
+      }
       setShowModal(false);
     };
 
+
+
+
+    const handleCompradores2 = async (sessao) => {
+      try {
+        dispatch(ShowLoading())
+          console.log(sessao)
+        const compradoresResponse = await GCompradores({ sessaoId: sessao })
+        if (compradoresResponse.success) {
+          setBilhetes2(compradoresResponse.data)
+        }
+        else {
+          message.error(compradoresResponse)
+        }
+        dispatch(HideLoading())
+      } catch (error) {
+        message.error(error.message)
+        dispatch(HideLoading())
+      }
+    }
+
+    const handleCompradores = async () => {
+      try {
+          console.log(sessao)
+        const compradoresResponse = await GCompradores({ sessaoId: sessao })
+        if (compradoresResponse.success) {
+          setBilhetes(compradoresResponse.data)
+        }
+        else {
+          message.error(compradoresResponse)
+        }
+        dispatch(HideLoading())
+      } catch (error) {
+        message.error(error.message)
+        dispatch(HideLoading())
+      }
+    }
+  
     const getData = async () => {
         try {
           dispatch(ShowLoading());
@@ -42,7 +94,6 @@ function Historico() {
     
           if (response.success) {
             setSessao(response.data.sessao)
-            setBilhetes(response.data.bilhetes)
           } else {
             message.error(response.message)
             dispatch(HideLoading());
@@ -53,6 +104,21 @@ function Historico() {
           dispatch(HideLoading());
         }
       }
+     React.useEffect(() => {
+        
+         getData();
+
+       
+    }, []);
+
+    React.useEffect(() => {
+        
+      handleCompradores();
+
+    
+ }, [sessao]);
+
+
 
       const columns = [
         {
@@ -132,18 +198,88 @@ function Historico() {
                 <i
                   className="ri-delete-bin-line"
                   style={{ color: "red" }}
-                  onClick={handleDeleteClick} // Apenas chame a função diretamente aqui
+                  onClick={ () => {
+                    handleDeleteClick()
+                    Setsessaoescolhida(record._id)}} // Apenas chame a função diretamente aqui
                 ></i>
-              </div>
+                 <span className='underline ml-2'
+         onClick={() => {
+          setSessionsModalOpen(true);
+          handleCompradores2(record._id)
+         }}
+       >Bilhetes</span>
+     </div>
+           
             );
           },
         },
     
       ]
 
-      React.useEffect(() => {
-        getData();
-      }, []);
+      const columns2 = [
+        {
+          title: "Id Bilhete",
+          dataIndex: "_id"
+        },
+        {
+          title: "Compradores",
+          dataIndex: "users",
+          sorter: (a, b) => {
+            const orderValue = (user) => {
+                if (user.isFunc) return 1;
+                if (user.isAdmin) return 2;
+                return 3; // Por padrão, assume que é Online
+            };
+    
+            return orderValue(a.user) - orderValue(b.user);
+        },
+          render: (text, record) => {
+            let clienteNome = record.user.nome;
+            if (record.user.isFunc) {
+              clienteNome = `Funcionário-${clienteNome}`;
+            } else if (record.user.isAdmin) {
+              clienteNome = `Admin-${clienteNome}`;
+            } else {
+              clienteNome = `Online-${clienteNome}`;
+            }
+      
+            return clienteNome;
+          }
+        },
+        {
+          title: "Email",
+          dataIndex: "email",
+          render: (text, record) => {
+            return record.user.email;
+          }
+        },
+        {
+          title: "Dia da compra",
+          dataIndex: "createdAt",
+          sorter: (a, b) => moment(a.createdAt).valueOf() - moment(b.createdAt).valueOf(),
+          render: (text, record) => {
+            return moment(text).format("DD-MM-YYYY");
+          }
+        },
+        {
+          title: "lugares",
+          dataIndex: "lugares",
+          render: (text, record) => {
+            return record.lugares.map(lugar => lugar).join(", ");
+          }
+        },
+        {
+          title: "Estado",
+          dataIndex: "estado",
+          align: "center",
+        },
+        
+          
+      ];
+
+
+ 
+
 
       const filteredSessoes = sessao.filter((s) => {
         return s.filme.titulo.toLowerCase().includes(searchTerm.toLowerCase());
@@ -165,7 +301,7 @@ function Historico() {
             />
           </div>
           <div className='mt-3'>
-            <Table columns={columns} dataSource={filteredSessoes} pagination={{ pageSize: 5 }} />
+            <Table columns={columns} dataSource={filteredSessoes} pagination={{ pageSize: 8 }} />
           </div>
     
           <Modal
@@ -179,9 +315,20 @@ function Historico() {
   </p>
   <div className="flex justify-end gap-1 mt-3">
     <Button title="Cancelar" variant="outline" type="button" onClick={handleModalClose} />
-    <Button  title="Confirmar " type="button" onClick={handleConfirmDelete} />
+    <Button title="Confirmar " type="button" onClick={handleConfirmDelete} />
   </div>
 </Modal>
+
+<Modal
+      title="Bilhetes"
+      visible={isSessionsModalOpen}
+      onCancel={() => setSessionsModalOpen(false)}
+      footer={null}
+      width={1200}
+
+   >
+        <Table columns={columns2} dataSource={bilhetes2} pagination={{ pageSize:5}} />
+   </Modal>
         </div>
       );
     }

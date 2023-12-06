@@ -126,3 +126,12 @@ export const GetAllSessoesbyFunc = async (payload) => {
         return error.response
     }
 }
+
+export const DeleteSessaoHist = async (payload) =>{
+    try {
+        const response = await axiosInstance.post("/api/cinemas/delete-sessao-historico",payload)
+        return response.data
+    } catch (error) {
+        return error.response
+    }
+}

@@ -676,6 +676,48 @@ console.log(bilhetes)
     }
   });
 
+  router.post("/delete-sessao-historico", authMiddleware, async (req, res) => {
+    const sessaoId = req.body.sessaoId;
+  
+   
+  
+    try {
+       if (!sessaoId) {
+      res.send({
+        success: false,
+        message: "Erro!",
+       
+      });
+    }
+  
+     // Remover a sessão específica
+      await Sessao.deleteOne({ _id: sessaoId })
+  
+      // Remover bilhetes relacionados a essa sessão
+      await Bilhete.deleteMany({ sessao: sessaoId })
+  
+      // Remover relações de funcionários com essa sessão
+      await Funcionarios_Sessoes.deleteMany({ sessao: sessaoId })
+  
+  
+  
+      res.send({
+        success: true,
+        message: "Sessão Removida com sucesso!",
+       
+      });
+  
+    } catch (error) {
+     
+  
+      res.send({
+        success: false,
+        message: error,
+       
+      });
+    }
+  });
+
 
 
 
