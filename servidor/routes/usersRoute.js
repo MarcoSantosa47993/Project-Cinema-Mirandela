@@ -86,7 +86,7 @@ router.post('/register', async (req, res) => {
             subject: 'Cinema Mirandela - verifique o seu Email!',
             html: `<h2>${req.body.nome}-Obrigado por se registar!</h2>
                   <h4>Por favor verifique o seu email para continuar....</h4>
-                  <a href="http://localhost:5000/api/users/verificar-email?token=${req.body.email}">Verificar o seu Email</a>
+                  <a href="https://cinema-mirandela2.onrender.com/api/users/verificar-email?token=${req.body.email}">Verificar o seu Email</a>
             `
         }
 
