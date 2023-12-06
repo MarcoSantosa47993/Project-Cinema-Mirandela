@@ -116,7 +116,7 @@ router.get('/verificar-email',async(req,res) => {
             emailToken = null
             user.isVerified = true
             await user.save()
-            res.redirect('/api/users/login')
+            res.redirect('/api/users/login2')
           
             
         }
@@ -239,7 +239,7 @@ router.get('/recuperar-password', async (req, res) => {
     }
 });
 
-router.get('/login' , (req,res) => {
+router.get('/login2' , (req,res) => {
     res.redirect("https://cinema-mirandela2.onrender.com/login")
 })
 
