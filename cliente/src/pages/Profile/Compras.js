@@ -17,16 +17,7 @@ function Bilhetes() {
     const [bilhetes = [], setBilhetes] = React.useState([])
     const [getbilhetes = null , setgetBilhetes] = React.useState(null)
     const [openQrcode = false, setopenQrCode] = React.useState(false)
-    const [showOptions, setShowOptions] = useState(false); // Estado para controlar a exibição das opções
-
-    const handleFacebookShare = () => {
-        const url = encodeURIComponent("https://www.youtube.com/?hl=pt-PT&gl=PT"); // O URL que você deseja compartilhar
-        const text = encodeURIComponent("Teste"); // O texto da sua publicação
-    
-        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&t=${text}`;
-    
-        window.open(shareUrl, '_blank');
-    };
+ 
 
     const getData = async () => {
         try {
@@ -88,21 +79,7 @@ function Bilhetes() {
         Ver qr-code
     </Button>
     <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-    <FaShareAlt 
-        style={{ marginLeft: '10px', cursor: 'pointer' }} 
-        onClick={() => setShowOptions(prev => !prev)} 
-    />
-
-    {showOptions && (
-        <div style={{ marginLeft: '10px', display: 'flex', background: 'white', boxShadow: '0px 0px 5px rgba(0,0,0,0.2)', zIndex: 1 }}>
-            <div style={{ cursor: 'pointer', padding: '10px' }} onClick={handleFacebookShare}>
-                <FaFacebook /> Facebook
-            </div>
-            <div style={{ cursor: 'pointer', padding: '10px' }} onClick={() => {/* Função de compartilhar no Twitter */}}>
-                <FaTwitter /> Twitter
-            </div>
-        </div>
-    )}
+    
 </div>
                         </div><h1 style={{ fontSize: "15px", marginTop:"10px" }}>Estado: {bilhete.estado}</h1>
                         </div>
