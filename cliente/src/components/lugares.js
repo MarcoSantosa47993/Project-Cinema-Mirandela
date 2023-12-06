@@ -495,7 +495,7 @@ user={user}
      <Modal
   open={successModalIsOpen}
   onCancel={() => {setSuccessModalIsOpen(false)
-                  window.location.reload();
+  setSelectedPlacesParent([])
   }
   }
   contentLabel="Modal de Sucesso"

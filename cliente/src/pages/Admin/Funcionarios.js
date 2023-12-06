@@ -83,7 +83,7 @@ const calcularTotalFaturado = (funcionario) => {
     }, 0);
     return (totalFaturado.toFixed(2) + " €");
   } else {
-    return "Carregando...";  // ou retornar "0 €" se preferir
+    return "0 €";  // ou retornar "0 €" se preferir
   }
 };
 

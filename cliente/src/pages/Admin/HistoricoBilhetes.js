@@ -131,7 +131,7 @@ function HistoricoBilhetes() {
   />
 </div>
           <div className='mt-3'>
-          <Table columns={columns} dataSource={filteredBilhetes} pagination={{ pageSize: 8 }} />
+          <Table columns={columns} dataSource={filteredBilhetes} pagination={{ pageSize: 5 }} />
         
     </div>
     </div>

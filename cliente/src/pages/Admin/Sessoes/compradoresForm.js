@@ -16,6 +16,28 @@ function Compradores({ openCompradoresModal, setopenCompradoresModal, sessao }) 
   const [selectedBilhete = null, setSelectedBilhete] = React.useState(null);
   const [openModalAviso = false, setopenModalAviso] = React.useState(false);
   const dispatch = useDispatch()
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [filteredBilhetes, setFilteredBilhetes] = React.useState([]); 
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+};
+
+
+useEffect(() => {
+  const filtered = bilhete.filter(b => {
+      // Verifica se o email existe e está no local correto
+      const email = b.user && b.user.email ? b.user.email.toLowerCase() : '';
+
+      // Verifica se o ID existe
+      const id = b._id ? b._id.toLowerCase() : '';
+
+      return (b.estado === 'Comprado' || b.estado === 'Validado') &&
+             (email.includes(searchTerm.toLowerCase()) ||
+              id.includes(searchTerm.toLowerCase()));
+  });
+  setFilteredBilhetes(filtered);
+}, [bilhete, searchTerm]);
 
   console.log(sessao)
   const handleCompradores = async () => {
@@ -241,7 +263,7 @@ if (fila) { // If the 'fila' (letter) exists.
 };
 
 
-const filteredBilhetes = bilhete.filter(b => b.estado === 'Comprado' || b.estado === 'Validado');
+
  
   return (
     <Modal
@@ -252,7 +274,13 @@ const filteredBilhetes = bilhete.filter(b => b.estado === 'Comprado' || b.estado
       footer={null}
     >
       <h1>Bilhetes</h1>
-
+      <input
+      type="text"
+      placeholder="Pesquisar por Email ou ID do Bilhete"
+      value={searchTerm}
+      onChange={handleSearchChange}
+      style={{ marginBottom: 20 }}
+    />
       <Table columns={columns} dataSource={filteredBilhetes} pagination={{ pageSize:5}} />
 
       {openModalAviso && <Aviso

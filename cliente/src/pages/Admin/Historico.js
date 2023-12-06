@@ -165,7 +165,7 @@ function Historico() {
             />
           </div>
           <div className='mt-3'>
-            <Table columns={columns} dataSource={filteredSessoes} pagination={{ pageSize: 8 }} />
+            <Table columns={columns} dataSource={filteredSessoes} pagination={{ pageSize: 5 }} />
           </div>
     
           <Modal
