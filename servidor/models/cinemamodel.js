@@ -1,29 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Importing Mongoose library for MongoDB interaction
 
+// Defining the schema for the "cinemas" collection
 const cinemaSchema = new mongoose.Schema({
     nome: {
-        type:String,
-        required: true,
+        type: String,
+        required: true, // Name of the cinema, required
     },
     morada: {
         type: String,
-        require: true,
+        required: true, // Address of the cinema, required
     },
     telefone: {
         type: Number,
-        require: true
+        required: true // Phone number of the cinema, required
     },
     email: {
         type: String,
-        require: false,
+        required: false, // Email address of the cinema, not required
     },
     estado: {
         type: String,
         required: true,
-        default: "Criado",
+        default: "Criado", // State of the cinema, default value is "Criado" (Created)
     }
-},
- {timestamps: true}
-)
+}, { timestamps: true }); // Automatic timestamps for creation and modification
 
-module.exports = mongoose.model("cinemas",cinemaSchema)
+// Exporting the Mongoose model for the "cinemas" collection
+module.exports = mongoose.model("cinemas", cinemaSchema);
