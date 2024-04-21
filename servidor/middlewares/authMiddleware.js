@@ -8,6 +8,6 @@ module.exports = function (req, res, next) {
         req.body.userId = decoded.userId;
         next();
     } catch (error) {
-        res.status(401).send({ success: false, message: "invali token" })
+        res.status(401).send({ success: false, message: "invalid token" })
     }
 }
